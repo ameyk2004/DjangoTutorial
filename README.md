@@ -204,3 +204,58 @@ Run the development server to check if the view works correctly:
 python manage.py runserver
 ```
 Navigate to http://127.0.0.1:8000/myapp/ to see the "Hello, world" message.
+
+## Templates in Django
+
+#### Create a Template Directory
+
+Django looks for templates in a `directory named templates` inside each app. Here's how you can set up the directory structure:
+
+Inside your app directory (e.g., myapp), create a templates directory.
+Inside the templates directory, create another directory with the same name as your app. This helps to avoid template name conflicts.
+Your directory structure should look like this:
+
+```python
+ myapp/
+├── templates/
+│   └── myapp/
+│       └── index.html
+├── views.py
+├── urls.py
+...
+```
+
+#### Create a Template
+
+Create an HTML file inside the templates/myapp/ directory. For example, create a file named index.html:
+
+```html
+<!-- myapp/templates/myapp/index.html -->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My App</title>
+</head>
+<body>
+    <h1>Hello, world. You're at the myapp index.</h1>
+    <p>{{ message }}</p>
+</body>
+</html>
+```
+
+#### Update the View to Use the Template
+
+Modify your view function to use the render function, which takes the request, the template name, and an optional context dictionary:
+
+```py
+# myapp/views.py
+
+from django.shortcuts import render
+
+def index(request):
+    context = {
+        'message': "Hello, world. You're at the myapp index with context."
+    }
+    return render(request, 'myapp/index.html', context)
+```
