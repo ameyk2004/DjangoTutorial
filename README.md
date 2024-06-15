@@ -55,3 +55,38 @@ your-repo-name/
 ├── Pipfile
 └── Pipfile.lock 
 ```
+
+### Configure pipenv Interpreter
+
+#### Install pipenv:
+
+```bash
+pip install pipenv
+```
+
+#### Open Command Palette:
+
+```bash 
+Press Cmd + Shift + P.
+Select Python Interpreter:
+```
+
+- Type Python: Select Interpreter.
+- Choose the pipenv interpreter.
+
+
+#### Open Integrated Terminal:
+
+- Press Ctrl + (backtick) or go to Terminal > New Terminal.
+- Activate pipenv shell if needed:
+
+```bash
+pipenv shell
+```
+
+#### Verify Setup:
+
+Check the Python version:
+```bash
+python --version
+```
