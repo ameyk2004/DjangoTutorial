@@ -90,3 +90,56 @@ Check the Python version:
 ```bash
 python --version
 ```
+
+## Create a New App
+
+Navigate to the Project Directory
+
+Make sure you are in the root directory of your Django project:
+
+### Create the App
+
+Use the startapp command to create a new app:
+
+```bash
+python manage.py startapp myapp
+```
+
+Replace myapp with the name of your new app.
+
+### Verify Directory Structure
+
+After running the command, you will see a new directory named myapp created within your project directory. The structure should look something like this:
+
+```csharp
+myproject/
+├── myproject/
+│   ├── __init__.py
+│   ├── settings.py
+│   ├── urls.py
+│   ├── wsgi.py
+│   └── asgi.py
+├── myapp/
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── models.py
+│   ├── tests.py
+│   ├── views.py
+│   └── migrations/
+├── manage.py
+└── Pipfile
+```
+
+### Register the App
+
+To make Django aware of your new app, you need to add it to the INSTALLED_APPS setting in your project's settings file (myproject/settings.py):
+
+```python
+# myproject/settings.py
+
+INSTALLED_APPS = [
+    ...
+    'myapp',
+]
+```
