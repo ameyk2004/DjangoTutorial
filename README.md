@@ -259,3 +259,30 @@ def index(request):
     }
     return render(request, 'myapp/index.html', context)
 ```
+
+<hr/>
+
+## Connector with MySql
+
+#### Install Connector for MySql And Django
+
+```bash
+pip install mysql-connector
+
+pip install mysql-connector-python
+```
+
+#### Change Database in `settings.py`
+
+```python
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'crmDb',
+        'USER': 'root',
+        'PASSWORD': 'Amey@1234',
+        'HOST': 'localhost',
+        'PORT': '3306'
+    }
+}
+```
