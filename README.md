@@ -286,3 +286,31 @@ DATABASES = {
     }
 }
 ```
+
+#### Database connection with Django
+
+```python
+import mysql.connector
+
+
+database = mysql.connector.connect(
+    host = 'localhost',
+    username = 'root',
+    passwd = 'Amey1234'
+)
+
+cursorObject = database.cursor()
+
+
+cursorObject.execute('CREATE DATABASE crmDb')
+
+print("Database Connected")
+```
+
+#### Migrate database connection
+
+```bash
+python manage.py migrate
+```
+
+You can verify your database connection in `MySqlWorkbench`

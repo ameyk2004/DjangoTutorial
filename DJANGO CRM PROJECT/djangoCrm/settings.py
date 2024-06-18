@@ -77,9 +77,9 @@ WSGI_APPLICATION = 'djangoCrm.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'ameyDbFile',
+        'NAME': 'crmDb',
         'USER': 'root',
-        'PASSWORD': 'Amey@1234',
+        'PASSWORD': 'Amey1234',
         'HOST': 'localhost',
         'PORT': '3306'
     }
