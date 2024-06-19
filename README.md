@@ -314,3 +314,33 @@ python manage.py migrate
 ```
 
 You can verify your database connection in `MySqlWorkbench`
+
+## Django Authentication System
+
+Django's authentication system provides a robust way to manage user accounts, handle login and logout, and enforce permissions and access controls.
+
+
+You can create a Super User to login as Admin.
+
+### Create a super user
+
+- Open your terminal and navigate to your Django project directory.
+
+```bash
+python manage.py createsuperuser
+```
+- You will be prompted to enter a username, email address, and password.
+
+```bash
+Username (leave blank to use 'your_username'): admin
+Email address: admin@example.com
+Password: ********
+Password (again): ********
+```
+
+- Open the Admin Interface:
+    - Open your web browser and navigate to http://127.0.0.1:8000/admin/.
+    - Log in using the admin username and password you set earlier.
+
+
+### Create Login and Logout Views
