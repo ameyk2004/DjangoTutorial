@@ -343,4 +343,119 @@ Password (again): ********
     - Log in using the admin username and password you set earlier.
 
 
-### Create Login and Logout Views
+## REST Framework in Django
+
+Api's allow to communcate with one and another.
+
+```bash
+pip install djangorestframework
+```
+
+Let us see a complete Example of Django Rest api creation.
+
+
+
+#### `Step 1 :` Create A new app 
+
+```bash
+django-admin startapp drinks
+```
+
+
+#### `Step 2 :` Register the app
+
+- Register your app in `settings.py` and make migrations
+
+```python
+INSTALLED_APPS = [
+    ...
+    'drinks',
+    'rest_framework',
+]
+```
+
+Then, make migrations and migrate:
+
+```bash
+python manage.py makemigrations drinks
+python manage.py migrate
+```
+#### `Step 3 :` Create and Register model
+
+- Creating a Model named Drinks to store info about a drink 
+
+Here is how model is created in `/drinks/models.py`
+
+```python
+from django.db import models
+
+class Drink(models.Model):
+    name = models.CharField(max_length=200)
+    description = models.CharField(max_length=500)
+    
+    def __str__(self):
+        return self.name
+```
+
+Register the model in drinks/admin.py:
+
+```python 
+from django.contrib import admin
+from .models import Drink
+
+admin.site.register(Drink)
+```
+
+### How to fetch from Api (`GET request`)
+
+#### Create a file named `serializers.py` in your `drinks app` :
+
+```python
+from rest_framework import serializers
+from .models import Drink
+
+class DrinkSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Drink
+        fields = ['id', 'name', 'description']
+```
+
+#### Register your views
+
+```python 
+from django.http import JsonResponse
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from .models import Drink
+from .serializers import DrinkSerializer
+
+@api_view(['GET'])
+def drink_list(request):
+    drinks = Drink.objects.all()
+    serializer = DrinkSerializer(drinks, many=True)
+    return Response(serializer.data)
+```
+
+First, configure your app's URLs in drinks/urls.py:
+
+```python
+from django.urls import path
+from .views import drink_list
+
+urlpatterns = [
+    path('drinks/', drink_list),
+]
+```
+
+Then, include your app's URLs in the project's urls.py:
+
+```python
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('drinks.urls')),
+]
+```
+
